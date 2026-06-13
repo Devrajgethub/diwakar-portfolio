@@ -339,8 +339,8 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto mb-10"
             >
-              Passionate about cybersecurity, ethical hacking, and building secure systems.
-              Exploring the world of Red Teaming one exploit at a time.
+              Passionate about Cyber Security, Red Teaming, Networking, and Ethical Hacking.
+              On a mission to become a skilled Red Teamer.
             </motion.p>
 
             <motion.div
@@ -430,19 +430,18 @@ export default function Home() {
                 </div>
 
                 <p className="text-foreground leading-relaxed">
-                  Mera naam <span className="text-cyber-green font-semibold">Diwakar</span> hai. Main{' '}
-                  <span className="text-cyber-cyan font-semibold">Diploma in Computer Science and Technology</span>{' '}
-                  ka student hoon.
+                  My name is <span className="text-cyber-green font-semibold">Diwakar</span>. I am a student of{' '}
+                  <span className="text-cyber-cyan font-semibold">Diploma in Computer Science and Technology</span>.
                 </p>
 
                 <p className="text-muted-foreground leading-relaxed">
-                  Mujhe Cyber Security, Red Teaming, Networking aur Ethical Hacking me interest hai.
-                  Mera goal future me ek skilled{' '}
-                  <span className="text-cyber-green font-semibold">Red Teamer</span> banna hai.
+                  I have a strong interest in Cyber Security, Red Teaming, Networking, and Ethical Hacking.
+                  My goal is to become a skilled{' '}
+                  <span className="text-cyber-green font-semibold">Red Teamer</span> in the future.
                 </p>
 
                 <p className="text-muted-foreground leading-relaxed">
-                  Currently I am learning penetration testing, network security, and web application security.
+                  Currently, I am learning penetration testing, network security, and web application security.
                   I believe in continuous learning and building practical skills.
                 </p>
 
