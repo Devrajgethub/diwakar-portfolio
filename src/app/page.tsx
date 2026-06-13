@@ -44,6 +44,8 @@ const projects = [
     tech: ['Arduino', 'C++', 'Sensors'],
     icon: Wifi,
     category: 'iot',
+    thumbnail: '/projects/rain-detection-system.png',
+    downloadUrl: '/projects/rain-detection-system.pptx',
   },
   {
     name: 'Ethical Hacking Presentation',
@@ -51,6 +53,8 @@ const projects = [
     tech: ['PowerPoint', 'Research', 'Cyber Security'],
     icon: Presentation,
     category: 'security',
+    thumbnail: '/projects/ethical-hacking.png',
+    downloadUrl: '/projects/ethical-hacking.pptx',
   },
   {
     name: 'Student Result Calculator',
@@ -58,6 +62,17 @@ const projects = [
     tech: ['HTML', 'CSS', 'JavaScript'],
     icon: Calculator,
     category: 'web',
+    thumbnail: '',
+    downloadUrl: '',
+  },
+  {
+    name: 'Blood Donation Management System',
+    description: 'Team project for managing blood donor records, requests, and facilitating blood donation coordination.',
+    tech: ['PowerPoint', 'Research', 'Management'],
+    icon: Database,
+    category: 'web',
+    thumbnail: '/projects/blood-donation.png',
+    downloadUrl: '/projects/blood-donation.pptx',
   },
   {
     name: 'Cyber Tools Directory',
@@ -65,6 +80,8 @@ const projects = [
     tech: ['HTML', 'CSS', 'JavaScript'],
     icon: Database,
     category: 'security',
+    thumbnail: '',
+    downloadUrl: '',
   },
   {
     name: 'Portfolio Website',
@@ -72,6 +89,8 @@ const projects = [
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     icon: Folder,
     category: 'web',
+    thumbnail: '',
+    downloadUrl: '',
   },
 ]
 
@@ -538,39 +557,67 @@ export default function Home() {
               const Icon = project.icon
               return (
                 <motion.div key={project.name} variants={itemVariants}>
-                  <Card className="cyber-card bg-card/50 backdrop-blur-sm border-border hover:border-cyber-green/50 group h-full flex flex-col">
+                  <Card className="cyber-card bg-card/50 backdrop-blur-sm border-border hover:border-cyber-green/50 group h-full flex flex-col overflow-hidden">
+                    {/* Project Thumbnail */}
+                    {project.thumbnail ? (
+                      <div className="relative aspect-video overflow-hidden bg-muted">
+                        <img
+                          src={project.thumbnail}
+                          alt={project.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+                      </div>
+                    ) : (
+                      <div className="relative aspect-video bg-gradient-to-br from-cyber-green/10 to-cyber-cyan/10 flex items-center justify-center">
+                        <Icon className="h-12 w-12 text-cyber-green/30" />
+                      </div>
+                    )}
                     <CardHeader className="pb-3">
                       <div className="flex items-start justify-between">
                         <div className="p-2 rounded-lg bg-cyber-green/10 group-hover:bg-cyber-green/20 transition-all">
-                          <Icon className="h-6 w-6 text-cyber-green" />
+                          <Icon className="h-5 w-5 text-cyber-green" />
                         </div>
                         <Badge variant="outline" className="border-cyber-cyan/30 text-cyber-cyan text-xs">
                           {project.category}
                         </Badge>
                       </div>
-                      <CardTitle className="text-lg text-foreground mt-2 group-hover:text-cyber-green transition-colors">
+                      <CardTitle className="text-base text-foreground mt-2 group-hover:text-cyber-green transition-colors leading-tight">
                         {project.name}
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="flex-1 flex flex-col">
-                      <CardDescription className="text-muted-foreground text-sm mb-4 flex-1">
+                    <CardContent className="flex-1 flex flex-col pt-0">
+                      <CardDescription className="text-muted-foreground text-sm mb-3 flex-1">
                         {project.description}
                       </CardDescription>
-                      <div className="flex flex-wrap gap-2 mb-4">
+                      <div className="flex flex-wrap gap-2 mb-3">
                         {project.tech.map((t) => (
                           <Badge key={t} variant="secondary" className="text-xs bg-muted text-muted-foreground">
                             {t}
                           </Badge>
                         ))}
                       </div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="w-full border-cyber-green/30 text-cyber-green hover:bg-cyber-green/10 group-hover:border-cyber-green/60 transition-all"
-                      >
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        View Project
-                      </Button>
+                      {project.downloadUrl ? (
+                        <a href={project.downloadUrl} download className="w-full">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="w-full border-cyber-green/30 text-cyber-green hover:bg-cyber-green/10 group-hover:border-cyber-green/60 transition-all"
+                          >
+                            <Download className="mr-2 h-4 w-4" />
+                            Download PPT
+                          </Button>
+                        </a>
+                      ) : (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="w-full border-cyber-green/30 text-cyber-green hover:bg-cyber-green/10 group-hover:border-cyber-green/60 transition-all"
+                        >
+                          <ExternalLink className="mr-2 h-4 w-4" />
+                          View Project
+                        </Button>
+                      )}
                     </CardContent>
                   </Card>
                 </motion.div>
