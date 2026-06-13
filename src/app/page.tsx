@@ -162,6 +162,33 @@ const certificates = [
     pdfUrl: '/certificates/devtown-project-completion.pdf',
     verifiedUrl: 'https://cert.devtown.in/verify/uYradShv',
   },
+  {
+    title: 'DCSC - Web Application Penetration Testing (Level 2)',
+    organization: 'TDO Tech Education Pvt. Ltd.',
+    date: '09 July 2025',
+    description: 'Advanced DCSC certification for Web Application Penetration Testing. ISO 9001:2015 certified. Valid until July 2027.',
+    thumbnail: '/certificates/tdo-dcsc-webapp-pentest2.png',
+    pdfUrl: '/certificates/tdo-dcsc-webapp-pentest2.pdf',
+    verifiedUrl: '',
+  },
+  {
+    title: 'Ethical Hacking with AI - Training Certificate',
+    organization: 'Internshala Trainings & IITM Pravartak',
+    date: '08 January 2026',
+    description: '8-week online training on Ethical Hacking with AI covering VAPT, OWASP Top 10, automating VAPT, and reporting. Top performer.',
+    thumbnail: '/certificates/internshala-ethical-hacking-ai.png',
+    pdfUrl: '/certificates/internshala-ethical-hacking-ai.pdf',
+    verifiedUrl: 'https://trainings.internshala.com/verify_certificate',
+  },
+  {
+    title: 'NSDC - Ethical Hacking with AI',
+    organization: 'Scholiverse Educare Pvt. Ltd. (NSDC/Skill India)',
+    date: '08 January 2026',
+    description: 'Certified in Ethical Hacking with AI under Skill India & NSDC initiative. Achieved Grade A. Student ID: CAN_38904578.',
+    thumbnail: '/certificates/nsdc-ethical-hacking-ai.png',
+    pdfUrl: '/certificates/nsdc-ethical-hacking-ai.pdf',
+    verifiedUrl: '',
+  },
 ]
 
 // ─── Animation Variants ──────────────────────────────
