@@ -46,3 +46,23 @@ Stage Summary:
 - Certificates section added with 3 professional certificates with thumbnail previews
 - Resume now downloadable and viewable
 - Contact info updated: diwakar4cs@gmail.com, +91 8962022501, github.com/diwakar4cs, Asansol
+
+---
+Task ID: 3
+Agent: Main Agent
+Task: Make portfolio Vercel-ready and provide deployment instructions
+
+Work Log:
+- Checked .gitignore - already had good coverage, added sandbox-specific exclusions
+- Updated next.config.ts: removed `output: "standalone"` (Vercel handles its own build)
+- Verified contact API is Vercel-compatible (simple validation, no external deps)
+- Added mini-services/, agent-ctx/, worklog.md etc to .gitignore
+- Ran lint check - clean
+- Committed changes to git
+- Provided step-by-step Vercel deployment instructions
+
+Stage Summary:
+- Project is now Vercel-ready
+- next.config.ts updated for Vercel compatibility
+- .gitignore updated to exclude sandbox files
+- User given 4-step deployment guide: GitHub repo → Push code → Import to Vercel → Deploy
