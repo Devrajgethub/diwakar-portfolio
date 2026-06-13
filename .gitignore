@@ -52,3 +52,10 @@ prompt
 server.log
 # Skills directory
 /skills/
+# Sandbox specific
+/mini-services/
+agent-ctx/
+worklog.md
+tool-results/
+.z-ai-config
+.claude
