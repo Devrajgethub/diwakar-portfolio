@@ -7,7 +7,7 @@ import {
   Shield, ChevronDown, Download, ExternalLink, Github, Linkedin,
   Instagram, Mail, MapPin, Code, Network, Server, Globe, Lock,
   Bug, Search, Zap, Terminal, ArrowRight, Send, CheckCircle,
-  Eye, FileCode, Calculator, Folder, Presentation, Brain,
+  Eye, FileCode, Folder, Presentation, Brain,
   Wifi, Monitor, Database, Cpu, Award, FileCheck, Phone, Sword
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -57,15 +57,6 @@ const projects = [
     downloadUrl: '/projects/ethical-hacking.pptx',
   },
   {
-    name: 'Student Result Calculator',
-    description: 'Web application to calculate and analyze student results with grade computation and statistical analysis.',
-    tech: ['HTML', 'CSS', 'JavaScript'],
-    icon: Calculator,
-    category: 'web',
-    thumbnail: '',
-    downloadUrl: '',
-  },
-  {
     name: 'Blood Donation Management System',
     description: 'Team project for managing blood donor records, requests, and facilitating blood donation coordination.',
     tech: ['PowerPoint', 'Research', 'Management'],
@@ -73,15 +64,6 @@ const projects = [
     category: 'web',
     thumbnail: '/projects/blood-donation.png',
     downloadUrl: '/projects/blood-donation.pptx',
-  },
-  {
-    name: 'Cyber Tools Directory',
-    description: 'Curated directory of cybersecurity tools organized by category with descriptions and usage guides.',
-    tech: ['HTML', 'CSS', 'JavaScript'],
-    icon: Database,
-    category: 'security',
-    thumbnail: '',
-    downloadUrl: '',
   },
   {
     name: 'Portfolio Website',
