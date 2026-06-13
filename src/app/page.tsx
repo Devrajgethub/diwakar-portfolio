@@ -8,7 +8,7 @@ import {
   Instagram, Mail, MapPin, Code, Network, Server, Globe, Lock,
   Bug, Search, Zap, Terminal, ArrowRight, Send, CheckCircle,
   Eye, FileCode, Calculator, Folder, Presentation, Brain,
-  Wifi, Monitor, Database, Cpu
+  Wifi, Monitor, Database, Cpu, Award, FileCheck, Phone
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -111,6 +111,37 @@ const blogs = [
     category: 'Security',
     readTime: '3 min',
     icon: Lock,
+  },
+]
+
+// ─── Certificates Data ───────────────────────────────
+const certificates = [
+  {
+    title: 'Self Paced Cyber Security Course',
+    organization: 'DevTown',
+    date: '18 March 2025',
+    description: 'Completed comprehensive cyber security training covering network security, ethical hacking, and security tools.',
+    thumbnail: '/certificates/devtown-cyber-security.png',
+    pdfUrl: '/certificates/devtown-cyber-security.pdf',
+    verifiedUrl: 'https://cert.devtown.in/verify/1j3rKPjy',
+  },
+  {
+    title: 'DCSC - Web Application Penetration Testing',
+    organization: 'TDO Tech Education Pvt. Ltd.',
+    date: '03 March 2025',
+    description: 'Certified in Drop Certified Security Course for Web Application Penetration Testing. ISO 9001:2015 certified.',
+    thumbnail: '/certificates/tdo-dcsc-penetration-testing.png',
+    pdfUrl: '/certificates/tdo-dcsc-penetration-testing.pdf',
+    verifiedUrl: '',
+  },
+  {
+    title: 'Project Completion - Cyber Security Program',
+    organization: 'DevTown',
+    date: '18 March 2025',
+    description: 'Successfully completed a hands-on project in the Self Paced Cyber Security Program under DevTown mentorship.',
+    thumbnail: '/certificates/devtown-project-completion.png',
+    pdfUrl: '/certificates/devtown-project-completion.pdf',
+    verifiedUrl: 'https://cert.devtown.in/verify/uYradShv',
   },
 ]
 
@@ -402,14 +433,25 @@ export default function Home() {
                   </Badge>
                 </div>
 
-                <div className="pt-6">
-                  <Button
-                    className="bg-cyber-green/10 text-cyber-green hover:bg-cyber-green/20 border border-cyber-green/30"
-                    variant="outline"
-                  >
-                    <Download className="mr-2 h-4 w-4" />
-                    Download Resume
-                  </Button>
+                <div className="pt-6 flex flex-wrap gap-3">
+                  <a href="/downloads/resume.png" download="Diwakar_Resume.png">
+                    <Button
+                      className="bg-cyber-green/10 text-cyber-green hover:bg-cyber-green/20 border border-cyber-green/30 btn-glow"
+                      variant="outline"
+                    >
+                      <Download className="mr-2 h-4 w-4" />
+                      Download Resume
+                    </Button>
+                  </a>
+                  <a href="/downloads/resume.png" target="_blank" rel="noopener noreferrer">
+                    <Button
+                      className="bg-cyber-cyan/10 text-cyber-cyan hover:bg-cyber-cyan/20 border border-cyber-cyan/30"
+                      variant="outline"
+                    >
+                      <Eye className="mr-2 h-4 w-4" />
+                      View Resume
+                    </Button>
+                  </a>
                 </div>
               </div>
             </motion.div>
@@ -588,6 +630,82 @@ export default function Home() {
 
         <Separator className="max-w-7xl mx-auto bg-border/50" />
 
+        {/* ═══════ CERTIFICATES SECTION ═══════ */}
+        <AnimatedSection id="certificates">
+          <SectionHeading title="Certificates" subtitle="My professional certifications and achievements" />
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {certificates.map((cert) => (
+              <motion.div key={cert.title} variants={itemVariants}>
+                <Card className="cyber-card bg-card/50 backdrop-blur-sm border-border hover:border-cyber-green/50 group h-full flex flex-col overflow-hidden">
+                  {/* Certificate Thumbnail */}
+                  <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                    <img
+                      src={cert.thumbnail}
+                      alt={cert.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+                    <div className="absolute top-3 right-3">
+                      <Badge className="bg-cyber-green/20 text-cyber-green border-cyber-green/30 text-xs">
+                        <Award className="mr-1 h-3 w-3" />
+                        Verified
+                      </Badge>
+                    </div>
+                  </div>
+
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-base text-foreground group-hover:text-cyber-green transition-colors leading-tight">
+                      {cert.title}
+                    </CardTitle>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <span className="text-cyber-cyan font-medium">{cert.organization}</span>
+                      <span>•</span>
+                      <span>{cert.date}</span>
+                    </div>
+                  </CardHeader>
+
+                  <CardContent className="flex-1 flex flex-col pt-0">
+                    <p className="text-muted-foreground text-sm flex-1 leading-relaxed mb-4">
+                      {cert.description}
+                    </p>
+                    <div className="flex gap-2">
+                      <a href={cert.pdfUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="w-full border-cyber-green/30 text-cyber-green hover:bg-cyber-green/10 transition-all"
+                        >
+                          <FileCheck className="mr-2 h-4 w-4" />
+                          View PDF
+                        </Button>
+                      </a>
+                      <a href={cert.pdfUrl} download className="flex-1">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="w-full border-cyber-cyan/30 text-cyber-cyan hover:bg-cyber-cyan/10 transition-all"
+                        >
+                          <Download className="mr-2 h-4 w-4" />
+                          Download
+                        </Button>
+                      </a>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatedSection>
+
+        <Separator className="max-w-7xl mx-auto bg-border/50" />
+
         {/* ═══════ CONTACT SECTION ═══════ */}
         <AnimatedSection id="contact">
           <SectionHeading title="Contact Me" subtitle="Get in touch for collaboration or just to say hi!" />
@@ -683,24 +801,34 @@ export default function Home() {
                     Connect With Me
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <a href="mailto:diwakar@cybersec.dev" className="flex items-center gap-3 p-3 rounded-lg hover:bg-cyber-green/5 transition-all group">
+                <CardContent className="space-y-3">
+                  <a href="mailto:diwakar4cs@gmail.com" className="flex items-center gap-3 p-3 rounded-lg hover:bg-cyber-green/5 transition-all group">
                     <div className="p-2 rounded-lg bg-cyber-green/10 group-hover:bg-cyber-green/20 transition-all">
                       <Mail className="h-5 w-5 text-cyber-green" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-foreground">Email</p>
-                      <p className="text-sm text-muted-foreground">diwakar@cybersec.dev</p>
+                      <p className="text-sm text-muted-foreground">diwakar4cs@gmail.com</p>
                     </div>
                   </a>
 
-                  <a href="https://github.com/diwakar" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg hover:bg-cyber-green/5 transition-all group">
+                  <a href="tel:+918962022501" className="flex items-center gap-3 p-3 rounded-lg hover:bg-cyber-green/5 transition-all group">
+                    <div className="p-2 rounded-lg bg-cyber-green/10 group-hover:bg-cyber-green/20 transition-all">
+                      <Phone className="h-5 w-5 text-cyber-green" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-foreground">Phone</p>
+                      <p className="text-sm text-muted-foreground">+91 8962022501</p>
+                    </div>
+                  </a>
+
+                  <a href="https://github.com/diwakar4cs" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg hover:bg-cyber-green/5 transition-all group">
                     <div className="p-2 rounded-lg bg-cyber-green/10 group-hover:bg-cyber-green/20 transition-all">
                       <Github className="h-5 w-5 text-cyber-green" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-foreground">GitHub</p>
-                      <p className="text-sm text-muted-foreground">github.com/diwakar</p>
+                      <p className="text-sm text-muted-foreground">github.com/diwakar4cs</p>
                     </div>
                   </a>
 
@@ -723,6 +851,16 @@ export default function Home() {
                       <p className="text-sm text-muted-foreground">@diwakar</p>
                     </div>
                   </a>
+
+                  <div className="flex items-center gap-3 p-3 rounded-lg">
+                    <div className="p-2 rounded-lg bg-orange-500/10">
+                      <MapPin className="h-5 w-5 text-orange-400" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-foreground">Location</p>
+                      <p className="text-sm text-muted-foreground">Asansol, West Bengal, India</p>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
 
@@ -764,7 +902,7 @@ export default function Home() {
               </span>
             </div>
             <div className="flex items-center gap-4">
-              <a href="https://github.com/diwakar" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-cyber-green transition-colors">
+              <a href="https://github.com/diwakar4cs" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-cyber-green transition-colors">
                 <Github className="h-5 w-5" />
               </a>
               <a href="https://linkedin.com/in/diwakar" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-cyber-cyan transition-colors">
@@ -773,7 +911,7 @@ export default function Home() {
               <a href="https://instagram.com/diwakar" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-pink-400 transition-colors">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="mailto:diwakar@cybersec.dev" className="text-muted-foreground hover:text-cyber-green transition-colors">
+              <a href="mailto:diwakar4cs@gmail.com" className="text-muted-foreground hover:text-cyber-green transition-colors">
                 <Mail className="h-5 w-5" />
               </a>
             </div>

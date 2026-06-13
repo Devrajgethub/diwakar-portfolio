@@ -25,3 +25,24 @@ Stage Summary:
 - Contact form API working with validation
 - Footer properly sticky at bottom
 - Lint passes clean
+
+---
+Task ID: 2
+Agent: Main Agent
+Task: Add Certificates section and Resume download to portfolio, update contact info
+
+Work Log:
+- Analyzed 4 uploaded files using VLM (PDFs converted to images first)
+- Identified: 3 certificates (DevTown Cyber Security, TDO Tech DCSC, DevTown Project Completion) + Resume image
+- Copied all files to public/certificates/ and public/downloads/ directories
+- Added certificates data array with thumbnails, PDFs, and verification links
+- Added Certificates section between Blog and Contact with card layout, thumbnails, View PDF and Download buttons
+- Updated Download Resume button to link to actual resume file + added View Resume button
+- Updated contact info with real details from resume (email, phone, GitHub, location)
+- Added Certificates link to navbar
+- All browser tests passed
+
+Stage Summary:
+- Certificates section added with 3 professional certificates with thumbnail previews
+- Resume now downloadable and viewable
+- Contact info updated: diwakar4cs@gmail.com, +91 8962022501, github.com/diwakar4cs, Asansol
