@@ -30,32 +30,34 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files
 .env*
 
 # vercel
 .vercel
 
-
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 local-*
-.claude
-.z-ai-config
+
+# logs
 *.log
 dev.log
 dev.out.log
-test
-prompt
-
 server.log
-# Skills directory
-/skills/
-# Sandbox specific
+
+# Sandbox specific - DO NOT PUSH
 /mini-services/
+/skills/
+/upload/
+/download/
+/examples/
 agent-ctx/
-worklog.md
 tool-results/
+worklog.md
 .z-ai-config
 .claude
+.zscripts/
+Caddyfile
+db/
