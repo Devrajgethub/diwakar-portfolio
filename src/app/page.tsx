@@ -218,7 +218,7 @@ function AdminMessagesPanel() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [password, setPassword] = useState('')
   const [messages, setMessages] = useState<Array<{
-    id: string; name: string; email: string; message: string; read: boolean; createdAt: string
+    id: string; name: string; email: string; message: string; createdAt: string
   }>>([])
   const [isLoading, setIsLoading] = useState(false)
 

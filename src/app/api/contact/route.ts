@@ -1,5 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
+
+// ─── Simple in-memory message store (for local dev) ───
+interface ContactMessage {
+  id: string
+  name: string
+  email: string
+  message: string
+  createdAt: string
+}
+
+const messagesStore: ContactMessage[] = []
 
 export async function POST(request: NextRequest) {
   try {
@@ -28,16 +38,43 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Save message to database
-    const contactMessage = await db.contactMessage.create({
-      data: {
-        name: name.trim(),
-        email: email.trim(),
-        message: message.trim(),
-      },
-    })
+    const msg: ContactMessage = {
+      id: Date.now().toString(),
+      name: name.trim(),
+      email: email.trim(),
+      message: message.trim(),
+      createdAt: new Date().toISOString(),
+    }
 
-    console.log('Contact form submission saved:', contactMessage.id)
+    // Store in memory (works locally, ephemeral on Vercel)
+    messagesStore.unshift(msg)
+    // Keep only last 100 messages
+    if (messagesStore.length > 100) messagesStore.pop()
+
+    // Send email via Web3Forms (if API key is configured)
+    const web3formsKey = process.env.WEB3FORMS_ACCESS_KEY
+    if (web3formsKey) {
+      try {
+        await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            access_key: web3formsKey,
+            name: name.trim(),
+            email: email.trim(),
+            message: message.trim(),
+            from_name: `${name.trim()} (Portfolio Contact)`,
+            subject: `New message from ${name.trim()} - Portfolio Contact`,
+          }),
+        })
+        console.log('Email sent via Web3Forms')
+      } catch (emailError) {
+        console.error('Web3Forms error:', emailError)
+        // Don't fail the request if email fails
+      }
+    }
+
+    console.log('Contact form submission:', msg.id)
 
     return NextResponse.json(
       { success: true, message: 'Message received successfully!' },
@@ -55,11 +92,7 @@ export async function POST(request: NextRequest) {
 // GET endpoint to fetch all messages
 export async function GET() {
   try {
-    const messages = await db.contactMessage.findMany({
-      orderBy: { createdAt: 'desc' },
-    })
-
-    return NextResponse.json({ messages })
+    return NextResponse.json({ messages: messagesStore })
   } catch (error) {
     console.error('Fetch messages error:', error)
     return NextResponse.json(
@@ -82,9 +115,10 @@ export async function DELETE(request: NextRequest) {
       )
     }
 
-    await db.contactMessage.delete({
-      where: { id },
-    })
+    const index = messagesStore.findIndex(m => m.id === id)
+    if (index !== -1) {
+      messagesStore.splice(index, 1)
+    }
 
     return NextResponse.json({ success: true })
   } catch (error) {
