@@ -408,13 +408,23 @@ export default function Home() {
 
     setIsSubmitting(true)
     try {
-      const res = await fetch('/api/contact', {
+      // Send email directly via Web3Forms from client (bypasses Cloudflare block)
+      const emailRes = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(contactForm),
+        body: JSON.stringify({
+          access_key: '07048459-38c0-420b-85f7-4ad47edd6748',
+          name: contactForm.name.trim(),
+          email: contactForm.email.trim(),
+          message: contactForm.message.trim(),
+          from_name: `${contactForm.name.trim()} (Portfolio Contact)`,
+          subject: `New message from ${contactForm.name.trim()} - Portfolio Contact`,
+        }),
       })
 
-      if (res.ok) {
+      const emailData = await emailRes.json()
+
+      if (emailData.success) {
         toast.success('Message sent successfully! 🎉')
         setContactForm({ name: '', email: '', message: '' })
       } else {
