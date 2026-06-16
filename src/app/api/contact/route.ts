@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { db } from '@/lib/db'
 
 export async function POST(request: NextRequest) {
   try {
@@ -27,9 +28,16 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // In a real app, you'd save to database or send email
-    // For now, we'll simulate success
-    console.log('Contact form submission:', { name, email, message })
+    // Save message to database
+    const contactMessage = await db.contactMessage.create({
+      data: {
+        name: name.trim(),
+        email: email.trim(),
+        message: message.trim(),
+      },
+    })
+
+    console.log('Contact form submission saved:', contactMessage.id)
 
     return NextResponse.json(
       { success: true, message: 'Message received successfully!' },
@@ -37,6 +45,50 @@ export async function POST(request: NextRequest) {
     )
   } catch (error) {
     console.error('Contact form error:', error)
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
+  }
+}
+
+// GET endpoint to fetch all messages
+export async function GET() {
+  try {
+    const messages = await db.contactMessage.findMany({
+      orderBy: { createdAt: 'desc' },
+    })
+
+    return NextResponse.json({ messages })
+  } catch (error) {
+    console.error('Fetch messages error:', error)
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
+  }
+}
+
+// DELETE endpoint to delete a message
+export async function DELETE(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url)
+    const id = searchParams.get('id')
+
+    if (!id) {
+      return NextResponse.json(
+        { error: 'Message ID is required' },
+        { status: 400 }
+      )
+    }
+
+    await db.contactMessage.delete({
+      where: { id },
+    })
+
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    console.error('Delete message error:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
