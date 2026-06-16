@@ -51,11 +51,11 @@ export async function POST(request: NextRequest) {
     // Keep only last 100 messages
     if (messagesStore.length > 100) messagesStore.pop()
 
-    // Send email via Web3Forms (if API key is configured)
-    const web3formsKey = process.env.WEB3FORMS_ACCESS_KEY
+    // Send email via Web3Forms
+    const web3formsKey = process.env.WEB3FORMS_ACCESS_KEY || '07048459-38c0-420b-85f7-4ad47edd6748'
     if (web3formsKey) {
       try {
-        await fetch('https://api.web3forms.com/submit', {
+        const emailRes = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -67,7 +67,8 @@ export async function POST(request: NextRequest) {
             subject: `New message from ${name.trim()} - Portfolio Contact`,
           }),
         })
-        console.log('Email sent via Web3Forms')
+        const emailData = await emailRes.json()
+        console.log('Web3Forms response:', emailData)
       } catch (emailError) {
         console.error('Web3Forms error:', emailError)
         // Don't fail the request if email fails
