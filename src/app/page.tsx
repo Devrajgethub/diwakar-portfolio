@@ -1025,13 +1025,13 @@ export default function Home() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <a href="mailto:diwakar4cs@gmail.com" className="flex items-center gap-3 p-3 rounded-lg hover:bg-cyber-green/5 transition-all group">
+                  <a href="mailto:devsupport24@gmail.com" className="flex items-center gap-3 p-3 rounded-lg hover:bg-cyber-green/5 transition-all group">
                     <div className="p-2 rounded-lg bg-cyber-green/10 group-hover:bg-cyber-green/20 transition-all">
                       <Mail className="h-5 w-5 text-cyber-green" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-foreground">Email</p>
-                      <p className="text-sm text-muted-foreground">diwakar4cs@gmail.com</p>
+                      <p className="text-sm text-muted-foreground">devsupport24@gmail.com</p>
                     </div>
                   </a>
 
@@ -1150,7 +1150,7 @@ export default function Home() {
               <a href="https://tryhackme.com/p/devraj.den" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-red-400 transition-colors">
                 <Sword className="h-5 w-5" />
               </a>
-              <a href="mailto:diwakar4cs@gmail.com" className="text-muted-foreground hover:text-cyber-green transition-colors">
+              <a href="mailto:devsupport24@gmail.com" className="text-muted-foreground hover:text-cyber-green transition-colors">
                 <Mail className="h-5 w-5" />
               </a>
             </div>
